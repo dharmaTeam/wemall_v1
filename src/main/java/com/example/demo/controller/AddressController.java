@@ -16,32 +16,32 @@ public class AddressController {
     @Autowired
     private AddressService addressService;
 
-    @GetMapping("/")
+    @GetMapping(value = "/",produces="application/json;charset=UTF-8")
     public List<Address> findAll(){
         return addressService.findAll();
     }
 
-    @GetMapping("/id")
+    @GetMapping(value = "/id",produces="application/json;charset=UTF-8")
     public Address findById(@RequestParam Long id){
         return addressService.findById(id);
     }
 
-    @GetMapping("/user_id")
+    @GetMapping(value = "/user_id",produces="application/json;charset=UTF-8")
     public List<Address> findByUser_id(@RequestParam Long user_id){
         return addressService.findByUserId(user_id);
     }
 
-    @PostMapping("/delete/id")
+    @PostMapping(value = "/delete/id",produces="application/json;charset=UTF-8")
     public void updateDeleteStatus(@RequestParam Long id){
         addressService.updateDeleteStatus(id);
     }
 
-    @PostMapping("/save")
+    @PostMapping(value = "/save",produces="application/json;charset=UTF-8")
     public Address save(Address address){
         return addressService.save(address);
     }
 
-    @GetMapping("/areaId")
+    @GetMapping(value = "/areaId",produces="application/json;charset=UTF-8")
     public String AddressArea(@RequestParam Long areaId){
         return addressService.area(areaId);
     }
