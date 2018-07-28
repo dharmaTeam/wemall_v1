@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface StoreCartDao extends JpaRepository<StoreCart,Long> {
-    @Query("select p from StoreCart p where p.user_id=?1")
+    @Query("select p from StoreCart p where p.user_id=?1 and deleteStatus = 0")
     StoreCart findByUser_id(Long user_id);
 
     @Query("select id from StoreCart where user_id = ?1 and deleteStatus = 0")
