@@ -40,20 +40,15 @@ public class AddressService {
         if (level == 2){
             AddressArea addressArea1 = areaDao.findById(addressArea.getParent_id()).orElse(new AddressArea());
             String area_1 = addressArea1.getAreaName();
-            Long parent_id = addressArea1.getParent_id();
             if (addressArea1.getLevel() == 1){
-                    AddressArea addressArea2 = areaDao.findById(parent_id).orElse(new AddressArea());
-                    String area_0 = addressArea2.getAreaName();
+                    String area_0 = areaDao.findById(addressArea1.getParent_id()).orElse(new AddressArea()).getAreaName();
                     return area_0 + area_1 + area_2;
             }
         }else if (level == 1){
-            AddressArea addressArea1 = areaDao.findById(addressArea.getParent_id()).orElse(new AddressArea());
-            String area_1 = addressArea1.getAreaName();
-
+            String area_1 = areaDao.findById(addressArea.getParent_id()).orElse(new AddressArea()).getAreaName();
             return area_1 + area_2;
         }
-
-       return area_2;
+        return area_2;
     }
     public List<Address> findAll(){
         return addressDao.findAll();
