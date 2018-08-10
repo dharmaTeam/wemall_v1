@@ -41,6 +41,10 @@ public class GoodsService {
     @Autowired
     private OrderFormDao orderFormDao;
 
+    public List<Long> findGoodsIdByOf_id(Long of_id){
+        return goodsCartDao.findGoodsIdByOrderForm(of_id);
+    }
+
     public List<Goods> findByGoodsNameLike(String goodsName, Long goods_store_id){
         goodsName = "%" + goodsName + "%";
 
@@ -184,4 +188,15 @@ public class GoodsService {
         }
     }
 
+    public List<GoodsValuable> findLike(Long goods_store_id,String word){
+        List<Goods> goods=goodsDao.findByGoods_store_idAndGoods_nameIsLike(goods_store_id,word);
+        List<GoodsValuable> list=new ArrayList<>();
+        for(Goods goods1:goods){
+            Accessory accessory=accessoryDao.findById(goods1.getGoods_main_photo_id()).orElse(new Accessory());
+            GoodsValuable goodsValuable=new GoodsValuable(goods1.getId(),goods1.getGoods_name(),new ZuTu(accessory.getPath(),accessory.getName(),accessory.getExt()),goods1.getGoods_price());
+            list.add(goodsValuable);
+        }
+
+        return list;
+    }
 }

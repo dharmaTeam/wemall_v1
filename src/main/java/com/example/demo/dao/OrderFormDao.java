@@ -10,4 +10,5 @@ public interface OrderFormDao extends JpaRepository<OrderForm,Long>{
 
      @Query(value = "select p from OrderForm p where store_id = ?1 and order_status = ?2")
     List<OrderForm> findByStore_idAndOrder_status(Long store_id,int order_status);
+
 }

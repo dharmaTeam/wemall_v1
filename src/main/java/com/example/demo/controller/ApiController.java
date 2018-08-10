@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.bean.Goods;
 import com.example.demo.service.GoodsService;
 import com.example.demo.valuable.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,6 @@ public class ApiController {
         goodsService.addToCart(user_id, goods_id, spec_info);
    }
 
-
    @GetMapping("/submit")
     public int submit(@RequestParam Long user_id,@RequestParam Long addr_id){
        return goodsService.submit(user_id, addr_id);
@@ -51,4 +51,8 @@ public class ApiController {
     public int delAndAdd(@RequestParam Long user_id,@RequestParam Long goods_id,@RequestParam Integer status){
           return goodsService.delAndAdd(user_id, goods_id, status);
    }
+    @GetMapping("/goods/like") //商品 id 名字 主图 价格
+    public List<GoodsValuable> findLike(@RequestParam Long goods_store_id,@RequestParam String word){
+       return goodsService.findLike(goods_store_id, word);
+    }
 }

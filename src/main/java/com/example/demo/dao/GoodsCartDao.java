@@ -20,6 +20,9 @@ public interface GoodsCartDao extends JpaRepository<GoodsCart,Long> {
        @Query("select p from GoodsCart p where p.goods_id=?1 and p.sc_id=?2")
        GoodsCart findByGoods_idAndSc_id(Long goods_id,Long sc_id);
 
+       @Query(value = "select p.goods_id from GoodsCart p where p.of_id=?1")
+       List<Long> findGoodsIdByOrderForm(Long of_id);
+
         @Modifying
         @Query("update GoodsCart set deleteStatus = 1 where sc_id in ?1 and goods_id = ?2 and deleteStatus = 0")
         void deleteByScIdAndGoodsId(List<Long> scIds, Long goodsId);

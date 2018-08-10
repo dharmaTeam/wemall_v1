@@ -16,5 +16,7 @@ public class GoodsMoreValuable {
     private Double goods_price;
     private String goods_property;
     private String goods_details;
+
+    public GoodsMoreValuable(Long id,String goods_name,List<ZuTu> zuTu,Double goods_price){};
 }
 
