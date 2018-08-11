@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.bean.OrderForm;
 import com.example.demo.service.OrderFormService;
+import com.example.demo.valuable.OrderFormByIdValuable;
 import com.example.demo.valuable.OrderFormValuable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,5 +31,10 @@ public class OrderFormController {
     @GetMapping("/findByStore_idAndOrder_status")
     public List<OrderFormValuable> findByStore_idAndOrder_status(@RequestParam Long store_id, @RequestParam int order_status){
         return orderFormService.findByStore_idAndOrder_status(store_id, order_status);
+    }
+
+    @GetMapping("findByOf_id")
+    public List<OrderFormByIdValuable> findByOf_id(@RequestParam Long of_id){
+        return orderFormService.findByOf_id(of_id);
     }
 }
