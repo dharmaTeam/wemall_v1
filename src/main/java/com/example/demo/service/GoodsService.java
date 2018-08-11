@@ -110,6 +110,7 @@ public class GoodsService {
         try{
             GoodsCart goodsCart=goodsCartDao.findByGoods_idAndSc_idAndSpec_info(goods_id,storeCart.getId(),spec_info);
             goodsCart.setCount(goodsCart.getCount()+1);
+            goodsCart.setDeletestatus(false);
             goodsCartDao.save(goodsCart);
             storeCart.setTotal_price(storeCart.getTotal_price()+goods.getGoods_price());
             storeCartDao.save(storeCart);
