@@ -54,28 +54,38 @@ public class AddressService {
         return addressDao.findAll();
     }
     public List<Address> findByUserId(Long user_id){
-        List<Address> addresses = addressDao.findWithUser_id(user_id);
-        List<Address> addresses1 = new ArrayList<>();
-        for (Address address : addresses){
-            Address address1 = new Address();
-            BeanUtils.copyProperties(address, address1);
+        for (Address address : addressDao.finddByUser_id(user_id)) {
+            if (address.isDeleteStatus() == false) {
+                List<Address> addresses = addressDao.findWithUser_id(user_id);
+                List<Address> addresses1 = new ArrayList<>();
+                for (Address address2 : addresses) {
+                    Address address1 = new Address();
+                    BeanUtils.copyProperties(address2, address1);
 
-            String addressArea = area(address1.getId()) + address1.getArea_info();
-            address1.setArea_info(addressArea);
-            addresses1.add(address1);
+                    String addressArea = area(address1.getId()) + address1.getArea_info();
+                    address1.setArea_info(addressArea);
+                    addresses1.add(address1);
+                }
+                return addresses1;
+            }else {
+                return null;
+            }
         }
-        return addresses1;
+        return null;
     }
 
     public Address findById(Long id){
-        Address address = addressDao.findByIdAndDeleteStatusEquals(id, false);
+       if (addressDao.findByIdd(id).isDeleteStatus() == false) {
+           Address address = addressDao.findByIdAndDeleteStatusEquals(id, false);
+           Address address1 = new Address();
+           BeanUtils.copyProperties(address, address1);
 
-        Address address1 = new Address();
-        BeanUtils.copyProperties(address, address1);
-
-        String addressArea = area(id) + address1.getArea_info();
-        address1.setArea_info(addressArea);
-        return address1;
+           String addressArea = area(id) + address1.getArea_info();
+           address1.setArea_info(addressArea);
+           return address1;
+       }else {
+           return null;
+       }
     }
 
 

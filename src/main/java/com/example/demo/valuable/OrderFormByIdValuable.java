@@ -18,4 +18,11 @@ public class OrderFormByIdValuable {
     private Integer status;
     private String user_address;
     private String order_id;
+
+    public OrderFormByIdValuable(List<GoodsMyValuable> goodsMyValuables, Double goods_amount, Integer status, String order_id) {
+        this.goodsMyValuables = goodsMyValuables;
+        this.goods_amount = goods_amount;
+        this.status = status;
+        this.order_id = order_id;
+    }
 }
