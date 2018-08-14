@@ -110,15 +110,15 @@ public class GoodsService {
         try{
             GoodsCart goodsCart=goodsCartDao.findByGoods_idAndSc_idAndSpec_info(goods_id,storeCart.getId(),spec_info);
             goodsCart.setCount(goodsCart.getCount()+1);
-            goodsCart.setDeletestatus(false);
+            goodsCart.setDeleteStatus(false);
             goodsCartDao.save(goodsCart);
             storeCart.setTotal_price(storeCart.getTotal_price()+goods.getGoods_price());
             storeCartDao.save(storeCart);
         }catch (Exception e){
             GoodsCart goodsCart=new GoodsCart();
             Date date=new Date();
-            goodsCart.setAddtime(date);
-            goodsCart.setDeletestatus(false);
+            goodsCart.setAddTime(date);
+            goodsCart.setDeleteStatus(false);
             goodsCart.setCount(1);
             goodsCart.setPrice(goods.getGoods_price());
             goodsCart.setSpec_info(spec_info);

@@ -15,7 +15,7 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
-    @GetMapping("/deleteGoods")
+    @PostMapping("/deleteGoods")
     public void deleteGoods(
             @RequestParam Long userId,
             @RequestParam Long goodsId

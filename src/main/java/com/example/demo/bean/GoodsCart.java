@@ -17,8 +17,8 @@ public class GoodsCart {
 //    @GeneratedValue
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Date addtime;
-    private  boolean deletestatus;
+    private Date addTime;
+    private  boolean deleteStatus;
     private  Integer count;
     private  double price;
     private  String spec_info;
