@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.bean.OrderForm;
 import com.example.demo.service.OrderFormService;
+import com.example.demo.valuable.OrderFormAllValuable;
 import com.example.demo.valuable.OrderFormByIdValuable;
 import com.example.demo.valuable.OrderFormValuable;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class OrderFormController {
     private OrderFormService orderFormService;
 
     @GetMapping("/findAll")
-    public List<OrderForm> findAll(@RequestParam Long store_id){
+    public List<OrderFormAllValuable> findAll(@RequestParam Long store_id){
         return orderFormService.findAll(store_id);
     }
 

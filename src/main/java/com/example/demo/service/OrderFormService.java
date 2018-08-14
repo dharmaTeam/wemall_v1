@@ -7,10 +7,7 @@ import com.example.demo.dao.AccessoryDao;
 import com.example.demo.dao.AddressDao;
 import com.example.demo.dao.GoodsDao;
 import com.example.demo.dao.OrderFormDao;
-import com.example.demo.valuable.GoodsMyValuable;
-import com.example.demo.valuable.OrderFormByIdValuable;
-import com.example.demo.valuable.OrderFormValuable;
-import com.example.demo.valuable.ZuTu;
+import com.example.demo.valuable.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,8 +38,24 @@ public class OrderFormService {
     @Autowired
     private AddressService addressService;
 
-    public List<OrderForm> findAll(Long store_id){
-        return orderFormDao.findByStore_id(store_id);
+    public List<OrderFormAllValuable> findAll(Long store_id){
+       List<OrderFormAllValuable> orderFormAllValuables = new ArrayList<>();
+       List<OrderForm> orderForms = orderFormDao.findByStore_id(store_id);
+
+       for (OrderForm orderForm :orderForms){
+           List<Long> goodsId = goodsService.findGoodsIdByOf_id(orderForm.getId());
+           List<GoodsMyValuable> goodsMyValuables=new ArrayList<>();
+           for (Long l : goodsId){
+               Goods goods = goodsDao.findById(l).orElse(new Goods());
+               Accessory accessory = accessoryDao.findById(goods.getGoods_main_photo_id()).orElse(new Accessory());
+               goodsMyValuables.add(new GoodsMyValuable(goods.getGoods_name(),new ZuTu(accessory.getPath(),accessory.getName(),accessory.getExt()),goods.getGoods_price()));
+           }
+//           Long addr_id = orderFormDao.findAddr_idByOf_id(orderForm.getId());
+//           String address = addressService.area(addr_id) + addressDao.findByIdAndDeleteStatusEquals(addr_id,false).getArea_info();
+           orderFormAllValuables.add(new OrderFormAllValuable(goodsMyValuables,orderForm.getGoods_amount(),orderForm.getOrder_status()/*,address*/,orderForm.getOrder_id(),orderForm.getId()));
+       }
+
+       return orderFormAllValuables;
     }
 
     public List<OrderFormValuable> findByStore_idAndOrder_status(Long store_id,int order_status){

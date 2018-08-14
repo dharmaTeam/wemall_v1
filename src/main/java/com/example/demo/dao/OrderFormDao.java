@@ -14,7 +14,7 @@ public interface OrderFormDao extends JpaRepository<OrderForm,Long>{
      @Query(value = "select p from OrderForm p where id = ?1")
     List<OrderForm> findByOf_id(Long id);
 
-     @Query(value = "select p.addr_id from OrderForm p where id = ?1")
+     @Query(value = "select p.addr_id from OrderForm p where p.id = ?1")
     Long findAddr_idByOf_id(Long id);
 
      @Query(value = "select p from OrderForm p where p.store_id = ?1")
