@@ -24,8 +24,8 @@ public class OrderFormController {
     private OrderFormService orderFormService;
 
     @GetMapping("/findAll")
-    public List<OrderForm> findAll(){
-        return orderFormService.findAll();
+    public List<OrderForm> findAll(@RequestParam Long store_id){
+        return orderFormService.findAll(store_id);
     }
 
     @GetMapping("/findByStore_idAndOrder_status")

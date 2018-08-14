@@ -41,8 +41,8 @@ public class OrderFormService {
     @Autowired
     private AddressService addressService;
 
-    public List<OrderForm> findAll(){
-        return orderFormDao.findAll();
+    public List<OrderForm> findAll(Long store_id){
+        return orderFormDao.findByStore_id(store_id);
     }
 
     public List<OrderFormValuable> findByStore_idAndOrder_status(Long store_id,int order_status){
