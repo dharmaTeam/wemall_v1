@@ -6,6 +6,7 @@ import com.example.demo.bean.Goods;
 import com.example.demo.bean.OrderForm;
 import com.example.demo.dao.*;
 import com.example.demo.util.OrderFormStatusString;
+import com.example.demo.util.SqlDate;
 import com.example.demo.valuable.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -104,11 +105,11 @@ public class OrderFormService {
                 String address = addressService.area(addr_id) + addressDao.findByIdAndDeleteStatusEquals(addr_id, false).getArea_info();
                 orderFormByIdValuables.add(new OrderFormByIdValuable(goodsMyValuables, orderForm.getGoods_amount(),
                         OrderFormStatusString.stringStatus(orderForm.getOrder_status()), address, orderForm.getOrder_id(),
-                        totalPrice,orderForm.getAddtime(),orderForm.getFinishtime(),orderForm.getPaytime(),orderForm.getShiptime()));
+                        totalPrice,SqlDate.dataToString(orderForm.getAddtime()),SqlDate.dataToString(orderForm.getFinishtime()),SqlDate.dataToString(orderForm.getPaytime()),SqlDate.dataToString(orderForm.getShiptime()),orderForm.getShipcode()));
             }else {
                 orderFormByIdValuables.add(new OrderFormByIdValuable(goodsMyValuables, orderForm.getGoods_amount(),
                         OrderFormStatusString.stringStatus(orderForm.getOrder_status()), orderForm.getOrder_id(),
-                        totalPrice,orderForm.getAddtime(),orderForm.getFinishtime(),orderForm.getPaytime(),orderForm.getShiptime()));
+                        totalPrice,SqlDate.dataToString(orderForm.getAddtime()),SqlDate.dataToString(orderForm.getFinishtime()),SqlDate.dataToString(orderForm.getPaytime()),SqlDate.dataToString(orderForm.getShiptime()),orderForm.getShipcode()));
             }
         }
         return orderFormByIdValuables;

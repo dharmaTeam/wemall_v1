@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
+
 import java.util.Date;
 import java.util.List;
 
@@ -21,21 +21,23 @@ public class OrderFormByIdValuable {
     private String user_address;
     private String order_id;
     private Double totalPrice;
-    private Date addTime;
-    private Date finfishTime;
-    private Date payTime;
-    private Date shipTime;
+    private String addTime;
+    private String finishTime;
+    private String payTime;
+    private String shipTime;
+    private String shipCode;
 
-    public OrderFormByIdValuable(List<GoodsMyValuable> goodsMyValuables, Double goods_amount, String status, String order_id,Double totalPrice,Date addTime,Date finfishTime,Date payTime,Date shipTime) {
+    public OrderFormByIdValuable(List<GoodsMyValuable> goodsMyValuables, Double goods_amount, String status, String order_id,Double totalPrice,String addTime,String finishTime,String payTime,String shipTime,String shipCode) {
         this.goodsMyValuables = goodsMyValuables;
         this.goods_amount = goods_amount;
         this.status = status;
         this.order_id = order_id;
         this.totalPrice = totalPrice;
         this.addTime = addTime;
-        this.finfishTime = finfishTime;
+        this.finishTime = finishTime;
         this.payTime = payTime;
-        this.shipTime = shipTime;
+        this.shipTime=shipTime;
+        this.shipCode=shipCode;
     }
 
 }

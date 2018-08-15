@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
+
 @Entity
 @Table(name = "wemall_orderform")
 @Data
