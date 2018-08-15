@@ -54,9 +54,11 @@ public class OrderFormService {
            }
            if (addressDao.findByIdd(orderForm.getAddr_id()).isDeleteStatus() == false) {
                String address = addressService.area(orderForm.getAddr_id()) + addressDao.findByIdAndDeleteStatusEquals(orderForm.getAddr_id(), false).getArea_info();
-               orderFormAllValuables.add(new OrderFormAllValuable(goodsMyValuables, orderForm.getGoods_amount(), OrderFormStatusString.stringStatus(orderForm.getOrder_status()), address, orderForm.getOrder_id(), orderForm.getId(), totalPrice));
+               orderFormAllValuables.add(new OrderFormAllValuable(goodsMyValuables, orderForm.getGoods_amount(),
+                       OrderFormStatusString.stringStatus(orderForm.getOrder_status()), address, orderForm.getOrder_id(), orderForm.getId(), totalPrice));
            }else {
-               orderFormAllValuables.add(new OrderFormAllValuable(goodsMyValuables, orderForm.getGoods_amount(), OrderFormStatusString.stringStatus(orderForm.getOrder_status()), orderForm.getOrder_id(), orderForm.getId(),totalPrice));
+               orderFormAllValuables.add(new OrderFormAllValuable(goodsMyValuables, orderForm.getGoods_amount(),
+                       OrderFormStatusString.stringStatus(orderForm.getOrder_status()), orderForm.getOrder_id(), orderForm.getId(),totalPrice));
            }
 
        }
@@ -78,7 +80,8 @@ public class OrderFormService {
                 goodsMyValuables.add(new GoodsMyValuable(goods.getGoods_name(),new ZuTu(accessory.getPath(),accessory.getName(),accessory.getExt()),goods.getGoods_price()));
                 totalPrice =totalPrice + goods.getGoods_price();
             }
-            orderFormValuables.add(new OrderFormValuable(goodsMyValuables,orderForm1.getGoods_amount(),OrderFormStatusString.stringStatus(orderForm1.getOrder_status()),orderForm1.getId(),totalPrice));
+            orderFormValuables.add(new OrderFormValuable(goodsMyValuables,orderForm1.getGoods_amount(),
+                    OrderFormStatusString.stringStatus(orderForm1.getOrder_status()),orderForm1.getId(),totalPrice));
         }
         return orderFormValuables;
     }
@@ -99,9 +102,13 @@ public class OrderFormService {
             Long addr_id = orderFormDao.findAddr_idByOf_id(of_id);
             if (addressDao.findByIdd(orderFormDao.findAddr_idByOf_id(of_id)).isDeleteStatus() == false) {
                 String address = addressService.area(addr_id) + addressDao.findByIdAndDeleteStatusEquals(addr_id, false).getArea_info();
-                orderFormByIdValuables.add(new OrderFormByIdValuable(goodsMyValuables, orderForm.getGoods_amount(), OrderFormStatusString.stringStatus(orderForm.getOrder_status()), address, orderForm.getOrder_id(),totalPrice,orderForm.getAddtime(),orderForm.getFinishtime(),orderForm.getPaytime(),orderForm.getShiptime()));
+                orderFormByIdValuables.add(new OrderFormByIdValuable(goodsMyValuables, orderForm.getGoods_amount(),
+                        OrderFormStatusString.stringStatus(orderForm.getOrder_status()), address, orderForm.getOrder_id(),
+                        totalPrice,orderForm.getAddtime(),orderForm.getFinishtime(),orderForm.getPaytime(),orderForm.getShiptime()));
             }else {
-                orderFormByIdValuables.add(new OrderFormByIdValuable(goodsMyValuables, orderForm.getGoods_amount(), OrderFormStatusString.stringStatus(orderForm.getOrder_status()), orderForm.getOrder_id(),totalPrice,orderForm.getAddtime(),orderForm.getFinishtime(),orderForm.getPaytime(),orderForm.getShiptime()));
+                orderFormByIdValuables.add(new OrderFormByIdValuable(goodsMyValuables, orderForm.getGoods_amount(),
+                        OrderFormStatusString.stringStatus(orderForm.getOrder_status()), orderForm.getOrder_id(),
+                        totalPrice,orderForm.getAddtime(),orderForm.getFinishtime(),orderForm.getPaytime(),orderForm.getShiptime()));
             }
         }
         return orderFormByIdValuables;
