@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -16,6 +17,7 @@ import java.util.List;
 public class OrderFormValuable {
     private List<GoodsMyValuable> goodsMyValuables;
     private Double goods_amount;
-    private Integer status;
+    private String status;
     private Long of_id;
+    private Double totalPrice;
 }
