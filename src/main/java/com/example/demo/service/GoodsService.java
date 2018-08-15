@@ -200,4 +200,11 @@ public class GoodsService {
 
         return list;
     }
+
+    //下架商品
+    public void goodsdown(Long id){
+        Goods goods = goodsDao.getOne(id);
+        goods.setGoods_status(-2);
+        goodsDao.save(goods);
+    }
 }
