@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,6 +16,9 @@ public class OrderFormByIdValuable {
     private List<GoodsMyValuable> goodsMyValuables;
     private Double goods_amount;
     private String status;
+    private String userName;
+    private String userTelephone;
+    private String mobile;
     private String user_address;
     private String order_id;
     private Double totalPrice;
@@ -27,7 +28,11 @@ public class OrderFormByIdValuable {
     private String shipTime;
     private String shipCode;
 
-    public OrderFormByIdValuable(List<GoodsMyValuable> goodsMyValuables, Double goods_amount, String status, String order_id,Double totalPrice,String addTime,String finishTime,String payTime,String shipTime,String shipCode) {
+
+    public OrderFormByIdValuable(List<GoodsMyValuable> goodsMyValuables, Double goods_amount,
+                                 String status,String userName,String userTelephone,String mobile,
+                                 String order_id,Double totalPrice,String addTime,String finishTime,
+                                 String payTime,String shipTime,String shipCode) {
         this.goodsMyValuables = goodsMyValuables;
         this.goods_amount = goods_amount;
         this.status = status;
@@ -38,6 +43,9 @@ public class OrderFormByIdValuable {
         this.payTime = payTime;
         this.shipTime=shipTime;
         this.shipCode=shipCode;
+        this.userName = userName;
+        this.userTelephone = userTelephone;
+        this.mobile = mobile;
     }
 
 }

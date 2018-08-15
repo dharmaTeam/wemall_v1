@@ -1,9 +1,7 @@
 package com.example.demo.service;
 
 import ch.qos.logback.core.joran.conditional.ElseAction;
-import com.example.demo.bean.Accessory;
-import com.example.demo.bean.Goods;
-import com.example.demo.bean.OrderForm;
+import com.example.demo.bean.*;
 import com.example.demo.dao.*;
 import com.example.demo.util.OrderFormStatusString;
 import com.example.demo.util.SqlDate;
@@ -37,6 +35,9 @@ public class OrderFormService {
 
     @Autowired
     private AddressService addressService;
+
+    @Autowired
+    private UserDao userDao;
 
 
     public List<OrderFormAllValuable> findAll(Long store_id){
@@ -100,16 +101,19 @@ public class OrderFormService {
                 goodsMyValuables.add(new GoodsMyValuable(goods.getGoods_name(), new ZuTu(accessory.getPath(), accessory.getName(), accessory.getExt()), goods.getGoods_price()));
                 totalPrice =totalPrice + goods.getGoods_price();
             }
+            Address address1 = addressDao.findById(orderForm.getAddr_id()).orElse(new Address());
             Long addr_id = orderFormDao.findAddr_idByOf_id(of_id);
             if (addressDao.findByIdd(orderFormDao.findAddr_idByOf_id(of_id)).isDeleteStatus() == false) {
                 String address = addressService.area(addr_id) + addressDao.findByIdAndDeleteStatusEquals(addr_id, false).getArea_info();
                 orderFormByIdValuables.add(new OrderFormByIdValuable(goodsMyValuables, orderForm.getGoods_amount(),
-                        OrderFormStatusString.stringStatus(orderForm.getOrder_status()), address, orderForm.getOrder_id(),
-                        totalPrice,SqlDate.dataToString(orderForm.getAddtime()),SqlDate.dataToString(orderForm.getFinishtime()),SqlDate.dataToString(orderForm.getPaytime()),SqlDate.dataToString(orderForm.getShiptime()),orderForm.getShipcode()));
+                        OrderFormStatusString.stringStatus(orderForm.getOrder_status()),address1.getTrueName(), address1.getTelephone(),address1.getMobile(),address, orderForm.getOrder_id(),
+                        totalPrice,SqlDate.dataToString(orderForm.getAddtime()),SqlDate.dataToString(orderForm.getFinishtime()),
+                        SqlDate.dataToString(orderForm.getPaytime()),SqlDate.dataToString(orderForm.getShiptime()),orderForm.getShipcode()));
             }else {
                 orderFormByIdValuables.add(new OrderFormByIdValuable(goodsMyValuables, orderForm.getGoods_amount(),
-                        OrderFormStatusString.stringStatus(orderForm.getOrder_status()), orderForm.getOrder_id(),
-                        totalPrice,SqlDate.dataToString(orderForm.getAddtime()),SqlDate.dataToString(orderForm.getFinishtime()),SqlDate.dataToString(orderForm.getPaytime()),SqlDate.dataToString(orderForm.getShiptime()),orderForm.getShipcode()));
+                        OrderFormStatusString.stringStatus(orderForm.getOrder_status()),address1.getTrueName(), address1.getTelephone(),address1.getMobile(),orderForm.getOrder_id(),
+                        totalPrice,SqlDate.dataToString(orderForm.getAddtime()),SqlDate.dataToString(orderForm.getFinishtime()),
+                        SqlDate.dataToString(orderForm.getPaytime()),SqlDate.dataToString(orderForm.getShiptime()),orderForm.getShipcode()));
             }
         }
         return orderFormByIdValuables;
