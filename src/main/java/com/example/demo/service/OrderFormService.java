@@ -9,8 +9,12 @@ import com.example.demo.valuable.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Create by coldwarm on 2018/8/10.
@@ -118,4 +122,14 @@ public class OrderFormService {
         }
         return orderFormByIdValuables;
     }
+
+   public List<OrderForm> findBetweenOrderForm(Long storeId,String  date1,String  date2) throws ParseException {
+       SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
+       Date d1 = sdf.parse(date1);
+       Date d2 = sdf.parse(date2);
+       return orderFormDao.findByFinishtimeBetween(storeId,d1,d2);
+
+    }
+
+
 }

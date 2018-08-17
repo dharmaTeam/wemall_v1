@@ -55,8 +55,8 @@ public class ApiController {
     public List<GoodsValuable> findLike(@RequestParam Long goods_store_id,@RequestParam String word){
        return goodsService.findLike(goods_store_id, word);
     }
-    @GetMapping("/down/{id}")
-    public void goodDown(@PathVariable Long id){
+    @GetMapping("/down")
+    public void goodDown(@RequestParam Long id){
         goodsService.goodsdown(id);
     }
 }

@@ -21,5 +21,7 @@ public class SqlDate {
 
     public static void main(String[] args) {
         System.out.println(dataToString(new Date()));
+
+        System.out.println(new Date());
     }
 }

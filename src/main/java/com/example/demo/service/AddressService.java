@@ -53,6 +53,8 @@ public class AddressService {
     public List<Address> findAll(){
         return addressDao.findAll();
     }
+
+
     public List<Address> findByUserId(Long user_id){
         for (Address address : addressDao.finddByUser_id(user_id)) {
             if (address.isDeleteStatus() == false) {
