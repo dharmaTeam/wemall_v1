@@ -58,9 +58,11 @@ public class GoodsService {
         List<Goods> goods=goodsDao.findByGoods_store_id(goods_store_id);
         List<GoodsValuable> list=new ArrayList<>();
         for(Goods goods1:goods){
-            Accessory accessory=accessoryDao.findById(goods1.getGoods_main_photo_id()).orElse(new Accessory());
-            GoodsValuable goodsValuable=new GoodsValuable(goods1.getId(),goods1.getGoods_name(),new ZuTu(accessory.getPath(),accessory.getName(),accessory.getExt()),goods1.getGoods_price());
-            list.add(goodsValuable);
+            if(goods1.getGoods_status()==0){
+                Accessory accessory=accessoryDao.findById(goods1.getGoods_main_photo_id()).orElse(new Accessory());
+                GoodsValuable goodsValuable=new GoodsValuable(goods1.getId(),goods1.getGoods_name(),new ZuTu(accessory.getPath(),accessory.getName(),accessory.getExt()),goods1.getGoods_price());
+                list.add(goodsValuable);
+            }
         }
 
         return list;
