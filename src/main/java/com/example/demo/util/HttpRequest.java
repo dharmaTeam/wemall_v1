@@ -1,4 +1,4 @@
-package com.example.demo.kuaidi;
+package com.example.demo.util;
 
 import java.util.ArrayList;
 import java.util.Iterator;

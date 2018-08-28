@@ -12,5 +12,5 @@ public interface StoreCartDao extends JpaRepository<StoreCart,Long> {
     StoreCart findByUser_id(Long user_id);
 
     @Query("select id from StoreCart where user_id = ?1 and deleteStatus = 0")
-    List<Long> findIdByUserId(Long userId);
+    List<Long> findIdByUserId(Long user_id);
 }

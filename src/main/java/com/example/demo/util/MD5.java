@@ -1,4 +1,6 @@
-package com.example.demo.kuaidi;
+package com.example.demo.util;
+
+import com.example.demo.excption.AppException;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
