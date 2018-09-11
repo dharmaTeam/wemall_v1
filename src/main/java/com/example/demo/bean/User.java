@@ -54,5 +54,8 @@ public class User {
     private Long parent_id;
     private Integer years;
     private Long area_id;
+    private String wx_openid;
+    private String wx_headimgurl;
+    private String id_card_num;
 
 }
