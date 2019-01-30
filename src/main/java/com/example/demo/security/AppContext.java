@@ -1,7 +1,5 @@
 package com.example.demo.security;
 
-import java.util.Currency;
-
 public class AppContext implements AutoCloseable {
 
     private static final ThreadLocal<String> CURRENT_CONSUMER_WECHAT_OPENID = new ThreadLocal<>();

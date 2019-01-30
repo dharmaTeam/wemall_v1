@@ -25,32 +25,32 @@ public class ThirdSessionAuthFilter extends OncePerRequestFilter {
     private StringRedisTemplate stringRedisTemplate;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException{
+    protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
         //获取请求头部分的Authorization
         String authHeader = httpServletRequest.getHeader(this.tokenHeader);
         //如果请求路径为微信通知后台支付结果则不需要token（之后会在具体的controller中，对双方签名进行验证防钓鱼）
         String url = httpServletRequest.getRequestURI().substring(httpServletRequest.getContextPath().length());
 
-        if (url.equals("/auth") || url.equals("/test")){
-            filterChain.doFilter(httpServletRequest,httpServletResponse);
+        if (url.equals("/auth") || url.equals("/test")) {
+            filterChain.doFilter(httpServletRequest, httpServletResponse);
         }
 
-        if(null == authHeader || !authHeader.startsWith("Bearer")){
+        if (null == authHeader || !authHeader.startsWith("Bearer")) {
             throw new RuntimeException("非法访问用户");
         }
 
         //The part after Bearer
         final String thirdSession = authHeader.substring(tokenHead.length());
         String wxSessionObj = stringRedisTemplate.opsForValue().get(thirdSession);
-        if(StringUtils.isEmpty(wxSessionObj)){
+        if (StringUtils.isEmpty(wxSessionObj)) {
             throw new RuntimeException("用户身份已过期");
         }
 
-        //设置当前登陆用户
+//        设置当前登陆用户
         try (
-            AppContext appContext = new AppContext(wxSessionObj.substring(wxSessionObj.indexOf("#") + 1))
-        ){
-            filterChain.doFilter(httpServletRequest,httpServletResponse);
-        }
+                AppContext appContext = new AppContext(wxSessionObj.substring(wxSessionObj.indexOf("#") + 1));
+        ) {
+            filterChain.doFilter(httpServletRequest, httpServletResponse);
         }
     }
+}

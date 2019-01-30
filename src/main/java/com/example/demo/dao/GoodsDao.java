@@ -18,4 +18,9 @@ public interface GoodsDao extends JpaRepository<Goods,Long> {
         Integer findGoods_invertoryById(Long id);
         @Query("select p from Goods p where p.goods_store_id=?1 and p.goods_name like %?2% ")
         List<Goods> findByGoods_store_idAndGoods_nameIsLike(Long good_store_id,String goods_name);
+
+
+        @Query("select p from Goods p where p.id=?1 and p.goods_store_id=?2")
+        Goods findGoodsByIdAndGoods_store_id(Long id,Long goods_store_id);
+//        No property goods found for type Goods!
 }

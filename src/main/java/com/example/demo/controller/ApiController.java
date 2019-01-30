@@ -1,13 +1,16 @@
 package com.example.demo.controller;
 
-import com.example.demo.bean.Goods;
 import com.example.demo.service.GoodsService;
-import com.example.demo.valuable.*;
+import com.example.demo.valuable.CartValuable;
+import com.example.demo.valuable.EvaluableValuable;
+import com.example.demo.valuable.GoodsMoreValuable;
+import com.example.demo.valuable.GoodsValuable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'apiController': Unsatisfied dependency expressed through field 'goodsService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'goodsService': Unsatisfied dependency expressed through field 'userDao'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userDao': Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract com.example.demo.bean.User com.example.demo.dao.UserDao.findUserByOpenid(java.lang.String)!
 
 @RestController
 @RequestMapping("/")

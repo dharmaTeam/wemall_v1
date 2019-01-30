@@ -1,7 +1,6 @@
 package com.example.demo.security;
 
 import com.example.demo.dto.WechatAuthenticationResponse;
-import com.example.demo.dto.WxCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -15,7 +14,7 @@ public class AuthEndpotin {
     @Value("${jwt.header}")
     private String tokenHeander;
 
-    @Value("${jwt.tokenHead}")
+    @Value("${jwt.tokenHeader}")
     private String tokenHead;
 
     @Autowired

@@ -20,7 +20,7 @@ public class User {
     @GeneratedValue
     private Long id;
     private Date addtime;
-    private  boolean deletestatus;
+    private boolean deletestatus;
     private String MSN;
     private String QQ;
     private String WW;

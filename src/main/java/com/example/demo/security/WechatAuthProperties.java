@@ -11,7 +11,7 @@ public class WechatAuthProperties {
     @Value("${auth.wechat.sessionHost}")
     private String sessionHost;
 
-    @Value(("${auth.wechat.appId}"))
+    @Value("${auth.wechat.appId}")
     private String appId;
 
     @Value("${auth.wechat.secret}")

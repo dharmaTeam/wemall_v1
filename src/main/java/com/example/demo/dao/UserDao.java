@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface UserDao extends JpaRepository<User,Long> {
 
-    @Query("select u from user u where u.wx_openid = ?1")
+    @Query("select p from User p where p.wx_openid = ?1")
     User findUserByOpenid(String openid);
 }

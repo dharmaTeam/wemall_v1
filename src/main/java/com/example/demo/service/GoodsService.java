@@ -209,4 +209,10 @@ public class GoodsService {
         goods.setGoods_status(-2);
         goodsDao.save(goods);
     }
+
+
+    public Goods findGoodsByIdAndGoodsStoreId(Long id,Long goods_store_id){
+        return goodsDao.findGoodsByIdAndGoods_store_id(id,goods_store_id);
+    }
+
 }

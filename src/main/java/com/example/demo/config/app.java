@@ -28,8 +28,7 @@ public class app extends WebMvcConfigurerAdapter {
     }
 
     @Override
-    public void configureContentNegotiation(
-            ContentNegotiationConfigurer configurer) {
+    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
         configurer.favorPathExtension(false);
     }
 }
